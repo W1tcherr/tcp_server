@@ -14,6 +14,13 @@
 class SocketManager
 {
 public:
+    int this_fd;
+    struct sockaddr_in this_address = {0};
+    socklen_t this_address_len;
+    ssize_t nread;
+    char buf[4096];
+
+    SocketManager(int domain, int type, int protocol, int port);
 
     static int Socket(int domain, int type, int protocol);
 

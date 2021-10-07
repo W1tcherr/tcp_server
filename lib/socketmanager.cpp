@@ -1,5 +1,13 @@
 #include "socketmanager.h"
 
+SocketManager::SocketManager(int domain, int type, int protocol, int port)
+{
+    this_fd = Socket(domain, type, protocol);
+    this_address.sin_family = domain;
+    this_address.sin_port = port;
+    this_address_len = sizeof(this_address);
+}
+
 int SocketManager::Socket(int domain, int type, int protocol)
 {
     int res = socket(domain, type, protocol);

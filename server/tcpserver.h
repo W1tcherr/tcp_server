@@ -9,23 +9,8 @@
 #include <string.h>
 #include "../lib/serversocketmanager.h"
 
-class Tcpserver
+class Tcpserver : ServerSocketManager
 {
-    int server_fd;
-    int client_fd;
-    ssize_t nread;
-    char buf[4096];
-    struct sockaddr_in server_address = {0};
-    socklen_t server_address_len;
-
-    enum class Status : bool
-    {
-        down = false,
-        up = true
-    };
-
-    Status server_status = Status::down;
-
    /* struct Client
     {
         static inline int client_id = 0;
@@ -48,7 +33,7 @@ class Tcpserver
     std::list<Client> clients;*/
 
 public:
-    Tcpserver(int domain, int type, int protocol, int port);
+    Tcpserver(int domain, int type, int protocol, int port) : ServerSocketManager(domain, type, protocol, port) {}
 
     void server_start(int backlog);
 
