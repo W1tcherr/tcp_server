@@ -3,4 +3,5 @@ project(test_client)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(test_client main.cpp ../lib/errorproc.cpp ../lib/errorproc.h tcpclient.cpp tcpclient.h)
+add_executable(test_client main.cpp tcpclient.cpp tcpclient.h ../lib/socketmanager.cpp ../lib/socketmanager.h
+                ../lib/processerror.cpp ../lib/processerror.h ../lib/clientsocketmanager.cpp ../lib/clientsocketmanager.h)

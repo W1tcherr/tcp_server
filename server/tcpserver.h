@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <list>
 #include <string.h>
-#include "../lib/errorproc.h"
+#include "../lib/serversocketmanager.h"
 
 class Tcpserver
 {

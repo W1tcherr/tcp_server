@@ -4,7 +4,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
-#include "../lib/errorproc.h"
+#include "../lib/clientsocketmanager.h"
 
 class Tcpclient
 {
