@@ -9,10 +9,10 @@ void Tcpserver::server_start(int backlog)
     {
         if (client_fd = Accept(this_fd, (struct sockaddr *) &this_address, &(this_address_len)))
         {
-            int _clietn_id = client_id;
-            clients.emplace(_clietn_id, std::thread([this, _clietn_id]
-                                                   { handle_connection(client_fd, _clietn_id); }));
-            ++client_id;
+            int _client_fd = client_fd;
+            int _client_id = client_id++;
+            clients.emplace(_client_id, std::thread([this, _client_id, _client_fd]
+                                                   { handle_connection(_client_fd, _client_id); }));
         }
         if (!clients_end.empty())
         {
@@ -23,15 +23,22 @@ void Tcpserver::server_start(int backlog)
             }
             clients_end.clear();
         }
+        std::cout << "\nmap size: " << clients.size();
+        for(auto &el: clients)
+        {
+            std::cout << "\nclients id: " << el.first << "\tthread_id: " << el.second.get_id() << std::endl;
+        }
     }
 }
 
 void Tcpserver::handle_connection(int _client_fd, int _client_id)
 {
+    char* buf = new char[buf_size];
     nread = Read(_client_fd, buf, sizeof(buf));
     write(STDOUT_FILENO, buf, nread);
     write(_client_fd, buf, nread);
     close(_client_fd);
+    delete[] buf;
     //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     clients_end.emplace_back(_client_id);
 }

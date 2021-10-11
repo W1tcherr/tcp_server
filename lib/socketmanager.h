@@ -18,7 +18,7 @@ public:
     struct sockaddr_in this_address = {0};
     socklen_t this_address_len;
     ssize_t nread;
-    char buf[4096];
+    int buf_size = 4096;
 
     SocketManager(int domain, int type, int protocol, int port);
 
