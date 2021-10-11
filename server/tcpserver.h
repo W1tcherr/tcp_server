@@ -13,12 +13,14 @@
 
 class Tcpserver : ServerSocketManager
 {
-    static inline int client_id = 0;
-    std::map<int,std::thread> clients;
+    int client_id = 0;
+    std::map<int, std::thread> clients;
     std::vector<int> clients_end{};
 
 public:
-    Tcpserver(int domain, int type, int protocol, int port) : ServerSocketManager(domain, type, protocol, port) {}
+    Tcpserver(int domain, int type, int protocol, int port) : ServerSocketManager(domain, type, protocol, port)
+    {
+    }
 
     void server_start(int backlog);
 
