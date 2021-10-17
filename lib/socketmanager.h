@@ -17,14 +17,13 @@ public:
     int this_fd;
     struct sockaddr_in this_address = {0};
     socklen_t this_address_len;
-    ssize_t nread;
-    char buf[4096];
+    int buf_size = 4096;
 
-    SocketManager(int domain, int type, int protocol, int port);
+    SocketManager(int domain, int type, int protocol, unsigned port);
 
     int Socket(int domain, int type, int protocol);
 
-    ssize_t Read(int fd, void *buf, size_t count);
+    bool Read(int fd, char *buf, size_t count, ssize_t &bytes_read);
 };
 
 #endif //CLIENT_SERVER_SOCKETMANAGER_H

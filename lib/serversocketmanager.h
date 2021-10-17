@@ -16,7 +16,7 @@ public:
 
     Status server_status = Status::down;
 
-    ServerSocketManager(int domain, int type, int protocol, int port) : SocketManager(domain, type, protocol, port){}
+    ServerSocketManager(int domain, int type, int protocol, unsigned port) : SocketManager(domain, type, protocol, port){}
 
     void Bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
 
@@ -24,6 +24,5 @@ public:
 
     int Accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
 };
-
 
 #endif //CLIENT_SERVER_SERVERSOCKETMANAGER_H

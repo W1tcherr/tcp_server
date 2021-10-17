@@ -18,7 +18,7 @@ class Tcpserver : ServerSocketManager
     std::vector<int> clients_end{};
 
 public:
-    Tcpserver(int domain, int type, int protocol, int port) : ServerSocketManager(domain, type, protocol, port)
+    Tcpserver(int domain, int type, int protocol, unsigned port) : ServerSocketManager(domain, type, protocol, port)
     {
     }
 
@@ -29,6 +29,8 @@ public:
     void sleep_server(unsigned seconds);
 
     void handle_connection(int _client_fd, int _client_id);
+
+    void cleaning_clients();
 
     ~Tcpserver();
 };
